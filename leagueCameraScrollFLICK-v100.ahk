@@ -91,8 +91,6 @@ $ Scroll Up/Down to cycle the camera between ally champions
 
 $ Press or hold Space to return the camera to your champion
 
-$ Press or hold Middle Mouse Button to unlock the camera
-
 $ Use Ctrl + Alt + Middle Mouse Button to exit the script (in an emergency)
 
 And that's everything. Supreme map awareness is at your
@@ -131,9 +129,6 @@ leagueScrollHotkeys() {
 
     if WinActive("ahk_exe League of Legends.exe") {
         WheelUp::
-        if (keyInd > 0) {
-            Send % "{" keyArray[keyInd] " up}"
-        }
         ; Wraps around to the start of the array,
         ; if the user has reached the end
         if (keyInd >= keyArray.Length()){
@@ -142,13 +137,10 @@ leagueScrollHotkeys() {
         else {
             keyInd ++
         }
-        Send % "{" keyArray[keyInd] " down}"
+        Send % "{" keyArray[keyInd] "}"
         Return
 
         WheelDown::
-        if (keyInd > 0) {
-            Send % "{" keyArray[keyInd] " up}"
-        }
         ; wrap around to the end of the array,
         ; if the user has reached the start
         if (keyInd <= 1){
@@ -157,7 +149,7 @@ leagueScrollHotkeys() {
         else {
             keyInd --
         }
-        Send % "{" keyArray[keyInd] " down}"
+        Send % "{" keyArray[keyInd] "}"
         Return
 
         ; Having separate hotkeys for {Space down}
@@ -168,27 +160,11 @@ leagueScrollHotkeys() {
         ; if they want to do that
 
         Space::
-        if (keyInd > 0){
-            Send % "{" keyArray[keyInd] " up}"
-        }
         Send {Space down}
         keyInd := 0
         Return
 
         Space Up::Send {Space up}
-
-        ; Same deal here, some people want to be able
-        ; to hold the MButton, so we're using separate
-        ; hotkeys
-
-        MButton::
-        if (keyInd > 0) {
-            Send % "{" keyArray[keyInd] " up}"
-        }
-        Send {MButton down}
-        Return
-
-        MButton Up::Send {MButton up}
     }
 }
 
