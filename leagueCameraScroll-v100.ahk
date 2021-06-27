@@ -93,7 +93,7 @@ $ Press or hold Space to return the camera to your champion
 
 $ Press or hold Middle Mouse Button to unlock the camera
 
-$ Use Ctrl + Middle Mouse Button to exit the script (in an emergency)
+$ Use Ctrl + Alt + Middle Mouse Button to exit the script (in an emergency)
 
 And that's everything. Supreme map awareness is at your
 fingertips, summoner! Good luck, and have fun.
@@ -203,4 +203,4 @@ main(){
 main()
 
 ; Emergency exit for the script, if something goes wrong
-^MButton::Exit
+^!MButton::Exit
