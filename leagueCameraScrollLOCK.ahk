@@ -206,7 +206,6 @@ Send {MButton down}
 Return
 
 MButton Up::Send {MButton up}
-}
 
 ; Emergency exit for the script, if something goes wrong
 ^!MButton::Exit
