@@ -118,80 +118,6 @@ SetKeyDelay, 35, 0
 
 #UseHook, On; Also required for working LoL AHK scripts
 
-leagueScrollHotkeys() {
-    ; The array of f-keys between which to cycle
-    ; starts at F3 to allow quick, intuitive
-    ; access to teammates
-    keyArray := ["F3", "F2", "F5", "F4"]
-
-    ; The index pointing to which ally
-    ; we want to spectate, manipulated
-    ; by the various hotkeys
-    keyInd := 0
-
-    if WinActive("ahk_exe League of Legends.exe") {
-        WheelUp::
-        if (keyInd > 0) {
-            Send % "{" keyArray[keyInd] " up}"
-        }
-        ; Wraps around to the start of the array,
-        ; if the user has reached the end
-        if (keyInd >= keyArray.Length()){
-            keyInd := 1
-        }
-        else {
-            keyInd ++
-        }
-        Send % "{" keyArray[keyInd] " down}"
-        Return
-
-        WheelDown::
-        if (keyInd > 0) {
-            Send % "{" keyArray[keyInd] " up}"
-        }
-        ; wrap around to the end of the array,
-        ; if the user has reached the start
-        if (keyInd <= 1){
-            keyInd := keyArray.Length()
-        }
-        else {
-            keyInd --
-        }
-        Send % "{" keyArray[keyInd] " down}"
-        Return
-
-        ; Having separate hotkeys for {Space down}
-        ; and {Space up} allows LoL to register the
-        ; button presses, while still allowing the
-        ; user to press and hold Space to center
-        ; the camera on their champion as they move,
-        ; if they want to do that
-
-        Space::
-        if (keyInd > 0){
-            Send % "{" keyArray[keyInd] " up}"
-        }
-        Send {Space down}
-        keyInd := 0
-        Return
-
-        Space Up::Send {Space up}
-
-        ; Same deal here, some people want to be able
-        ; to hold the MButton, so we're using separate
-        ; hotkeys
-
-        MButton::
-        if (keyInd > 0) {
-            Send % "{" keyArray[keyInd] " up}"
-        }
-        Send {MButton down}
-        Return
-
-        MButton Up::Send {MButton up}
-    }
-}
-
 copyScriptToLeagueFolder(){
     ; TODO
 }
@@ -201,6 +127,78 @@ main(){
 }
 
 main()
+
+; The array of f-keys between which to cycle
+; starts at F3 to allow quick, intuitive
+; access to teammates
+keyArray := ["F3", "F2", "F5", "F4"]
+
+; The index pointing to which ally
+; we want to spectate, manipulated
+; by the various hotkeys
+keyInd := 0
+
+if WinActive("ahk_exe League of Legends.exe") {
+    WheelUp::
+    if (keyInd > 0) {
+        Send % "{" keyArray[keyInd] " up}"
+    }
+    ; Wraps around to the start of the array,
+    ; if the user has reached the end
+    if (keyInd >= keyArray.Length()){
+        keyInd := 1
+    }
+    else {
+        keyInd ++
+    }
+    Send % "{" keyArray[keyInd] " down}"
+    Return
+
+    WheelDown::
+    if (keyInd > 0) {
+        Send % "{" keyArray[keyInd] " up}"
+    }
+    ; wrap around to the end of the array,
+    ; if the user has reached the start
+    if (keyInd <= 1){
+        keyInd := keyArray.Length()
+    }
+    else {
+        keyInd --
+    }
+    Send % "{" keyArray[keyInd] " down}"
+    Return
+
+    ; Having separate hotkeys for {Space down}
+    ; and {Space up} allows LoL to register the
+    ; button presses, while still allowing the
+    ; user to press and hold Space to center
+    ; the camera on their champion as they move,
+    ; if they want to do that
+
+    Space::
+    if (keyInd > 0){
+        Send % "{" keyArray[keyInd] " up}"
+    }
+    Send {Space down}
+    keyInd := 0
+    Return
+
+    Space Up::Send {Space up}
+
+    ; Same deal here, some people want to be able
+    ; to hold the MButton, so we're using separate
+    ; hotkeys
+
+    MButton::
+    if (keyInd > 0) {
+        Send % "{" keyArray[keyInd] " up}"
+    }
+    Send {MButton down}
+    Return
+
+    MButton Up::Send {MButton up}
+}
 
 ; Emergency exit for the script, if something goes wrong
 ^!MButton::Exit

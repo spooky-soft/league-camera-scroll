@@ -116,58 +116,6 @@ SetKeyDelay, 35, 0
 
 #UseHook, On; Also required for working LoL AHK scripts
 
-leagueScrollHotkeys() {
-    ; The array of f-keys between which to cycle
-    ; starts at F3 to allow quick, intuitive
-    ; access to teammates
-    keyArray := ["F3", "F2", "F5", "F4"]
-
-    ; The index pointing to which ally
-    ; we want to spectate, manipulated
-    ; by the various hotkeys
-    keyInd := 0
-
-    if WinActive("ahk_exe League of Legends.exe") {
-        WheelUp::
-        ; Wraps around to the start of the array,
-        ; if the user has reached the end
-        if (keyInd >= keyArray.Length()){
-            keyInd := 1
-        }
-        else {
-            keyInd ++
-        }
-        Send % "{" keyArray[keyInd] "}"
-        Return
-
-        WheelDown::
-        ; wrap around to the end of the array,
-        ; if the user has reached the start
-        if (keyInd <= 1){
-            keyInd := keyArray.Length()
-        }
-        else {
-            keyInd --
-        }
-        Send % "{" keyArray[keyInd] "}"
-        Return
-
-        ; Having separate hotkeys for {Space down}
-        ; and {Space up} allows LoL to register the
-        ; button presses, while still allowing the
-        ; user to press and hold Space to center
-        ; the camera on their champion as they move,
-        ; if they want to do that
-
-        Space::
-        Send {Space down}
-        keyInd := 0
-        Return
-
-        Space Up::Send {Space up}
-    }
-}
-
 copyScriptToLeagueFolder(){
     ; TODO
 }
@@ -177,6 +125,56 @@ main(){
 }
 
 main()
+
+; The array of f-keys between which to cycle
+; starts at F3 to allow quick, intuitive
+; access to teammates
+keyArray := ["F3", "F2", "F5", "F4"]
+
+; The index pointing to which ally
+; we want to spectate, manipulated
+; by the various hotkeys
+keyInd := 0
+
+if WinActive("ahk_exe League of Legends.exe") {
+    WheelUp::
+    ; Wraps around to the start of the array,
+    ; if the user has reached the end
+    if (keyInd >= keyArray.Length()){
+        keyInd := 1
+    }
+    else {
+        keyInd ++
+    }
+    Send % "{" keyArray[keyInd] "}"
+    Return
+
+    WheelDown::
+    ; wrap around to the end of the array,
+    ; if the user has reached the start
+    if (keyInd <= 1){
+        keyInd := keyArray.Length()
+    }
+    else {
+        keyInd --
+    }
+    Send % "{" keyArray[keyInd] "}"
+    Return
+
+    ; Having separate hotkeys for {Space down}
+    ; and {Space up} allows LoL to register the
+    ; button presses, while still allowing the
+    ; user to press and hold Space to center
+    ; the camera on their champion as they move,
+    ; if they want to do that
+
+    Space::
+    Send {Space down}
+    keyInd := 0
+    Return
+
+    Space Up::Send {Space up}
+}
 
 ; Emergency exit for the script, if something goes wrong
 ^!MButton::Exit
