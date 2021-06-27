@@ -135,8 +135,8 @@ keyArray := ["F3", "F2", "F5", "F4"]
 ; by the various hotkeys
 keyInd := 0
 
+WheelUp::
 if WinActive("ahk_exe League of Legends.exe") {
-    WheelUp::
     ; Wraps around to the start of the array,
     ; if the user has reached the end
     if (keyInd >= keyArray.Length()){
@@ -146,9 +146,14 @@ if WinActive("ahk_exe League of Legends.exe") {
         keyInd ++
     }
     Send % "{" keyArray[keyInd] "}"
-    Return
+}
+else {
+    Send {WheelUp}
+}
+Return
 
-    WheelDown::
+WheelDown::
+if WinActive("ahk_exe League of Legends.exe") {
     ; wrap around to the end of the array,
     ; if the user has reached the start
     if (keyInd <= 1){
@@ -158,22 +163,25 @@ if WinActive("ahk_exe League of Legends.exe") {
         keyInd --
     }
     Send % "{" keyArray[keyInd] "}"
-    Return
-
-    ; Having separate hotkeys for {Space down}
-    ; and {Space up} allows LoL to register the
-    ; button presses, while still allowing the
-    ; user to press and hold Space to center
-    ; the camera on their champion as they move,
-    ; if they want to do that
-
-    Space::
-    Send {Space down}
-    keyInd := 0
-    Return
-
-    Space Up::Send {Space up}
 }
+else {
+    Send {WheelUp}
+}
+Return
+
+; Having separate hotkeys for {Space down}
+; and {Space up} allows LoL to register the
+; button presses, while still allowing the
+; user to press and hold Space to center
+; the camera on their champion as they move,
+; if they want to do that
+
+Space::
+Send {Space down}
+keyInd := 0
+Return
+
+Space Up::Send {Space up}
 
 ; Emergency exit for the script, if something goes wrong
 ^!MButton::Exit
