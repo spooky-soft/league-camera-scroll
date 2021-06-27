@@ -123,7 +123,6 @@ copyScriptToLeagueFolder(){
 }
 
 main(){
-    leagueScrollHotkeys()
 }
 
 main()

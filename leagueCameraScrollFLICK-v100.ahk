@@ -121,7 +121,6 @@ copyScriptToLeagueFolder(){
 }
 
 main(){
-    leagueScrollHotkeys()
 }
 
 main()
