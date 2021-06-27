@@ -14,6 +14,8 @@ But there's a few things you need to do first, before this script will work in y
 
 URL: https://www.autohotkey.com/
 
+⭐ (Optionally, you can download the `.exe` version, which includes the AHK interpreter.)
+
 This is the engine that drives the script. Don't worry, people have been using AHK scripts in League for a decade, and the only ones who have received anything like a ban or warning are people cheesing inhuman combos. We're basically just remapping some of the keyboard shortcuts to a different key. With that being said...
 
 #### ⭐ !! WARNING !!
