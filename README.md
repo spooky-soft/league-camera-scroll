@@ -10,6 +10,8 @@ But there's a few things you need to do first, before this script will work in y
 
 ### ⭐ Install AutoHotKey
 
+(`.ahk` versions only)
+
 URL: https://www.autohotkey.com/
 
 This is the engine that drives the script. Don't worry, people have been using AHK scripts in League for a decade, and the only ones who have received anything like a ban or warning are people cheesing inhuman combos. We're basically just remapping some of the keyboard shortcuts to a different key. With that being said...
@@ -37,7 +39,7 @@ Just like that, with the `[MouseSettings]` on a line above the `RollerButtonSpee
 
 Once those are both done, scrolling your mouse wheel will no longer zoom in/out when you're in a game.
 
-⭐ (You also won't be able to scroll up or down in the in-game options menu, so either click-drag the scroll bar or edit your settings in the client.)
+⭐ (You also won't be able to scroll up or down in the in-game options menu or shop, so either click-drag the scroll bar or edit your settings in the client.)
 
 ##### NOTE:
 
@@ -67,7 +69,7 @@ At the start of the game, hold `TAB` and drag your little profile to the middle 
 
 ⭐ Press or hold `Space` to return the camera to your champion
 
-⭐ Press or hold `Middle Mouse Button` to unlock the camera
+⭐ Press or hold `Middle Mouse Button` to unlock the camera (LOCK only)
 
 ⭐ Use `Ctrl + Alt + Middle Mouse Button` to exit the script (in an emergency)
 
