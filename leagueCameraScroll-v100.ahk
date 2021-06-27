@@ -72,13 +72,6 @@ RollerButtonSpeed=0
         Select Ally 2: F3
         Select Ally 3: F4
         Select Ally 4: F5
-    
-    I would also recommend binding the 'Scroll Up/Down'
-    hotkeys to something other than the arrow keys. 
-    Just something random on your keyboard that you
-    never touch. There will sometimes be a TINY bit
-    of stutter if you don't do this, so it's really
-    just up to personal preference. 
 
 HOW TO USE
 
@@ -98,7 +91,7 @@ $ Scroll Up/Down to cycle the camera between ally champions
 
 $ Press or hold Space to return the camera to your champion
 
-$ Press or hold Middle Button to unlock the camera
+$ Press or hold Middle Mouse Button to unlock the camera
 
 $ Use Ctrl + Middle Button to exit the script (in an emergency)
 
