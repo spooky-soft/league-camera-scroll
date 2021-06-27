@@ -53,7 +53,7 @@ RollerButtonSpeed=0
     no longer zoom in/out when you're in a game. 
 
         (You also won't be able to scroll up or down in the in-game
-        options menu, so either click-drag the scroll bar or edit
+        options menu or shop, so either click-drag the scroll bar or edit
         your settings in the client.)
 
         NOTE: Signing out then signing in to a Riot account
