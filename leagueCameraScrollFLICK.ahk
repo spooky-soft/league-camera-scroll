@@ -165,7 +165,7 @@ if WinActive("ahk_exe League of Legends.exe") {
     Send % "{" keyArray[keyInd] "}"
 }
 else {
-    Send {WheelUp}
+    Send {WheelDown}
 }
 Return
 

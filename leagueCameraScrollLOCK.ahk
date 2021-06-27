@@ -137,8 +137,8 @@ keyArray := ["F3", "F2", "F5", "F4"]
 ; by the various hotkeys
 keyInd := 0
 
+WheelUp::
 if WinActive("ahk_exe League of Legends.exe") {
-    WheelUp::
     if (keyInd > 0) {
         Send % "{" keyArray[keyInd] " up}"
     }
@@ -151,9 +151,14 @@ if WinActive("ahk_exe League of Legends.exe") {
         keyInd ++
     }
     Send % "{" keyArray[keyInd] " down}"
-    Return
+}
+else {
+    Send {WheelUp}
+}
+Return
 
-    WheelDown::
+WheelDown::
+if WinActive("ahk_exe League of Legends.exe") {
     if (keyInd > 0) {
         Send % "{" keyArray[keyInd] " up}"
     }
@@ -166,37 +171,41 @@ if WinActive("ahk_exe League of Legends.exe") {
         keyInd --
     }
     Send % "{" keyArray[keyInd] " down}"
-    Return
+}
+else {
+    Send {WheelDown}
+}
+Return
 
-    ; Having separate hotkeys for {Space down}
-    ; and {Space up} allows LoL to register the
-    ; button presses, while still allowing the
-    ; user to press and hold Space to center
-    ; the camera on their champion as they move,
-    ; if they want to do that
+; Having separate hotkeys for {Space down}
+; and {Space up} allows LoL to register the
+; button presses, while still allowing the
+; user to press and hold Space to center
+; the camera on their champion as they move,
+; if they want to do that
 
-    Space::
-    if (keyInd > 0){
-        Send % "{" keyArray[keyInd] " up}"
-    }
-    Send {Space down}
-    keyInd := 0
-    Return
+Space::
+if (keyInd > 0){
+    Send % "{" keyArray[keyInd] " up}"
+}
+Send {Space down}
+keyInd := 0
+Return
 
-    Space Up::Send {Space up}
+Space Up::Send {Space up}
 
-    ; Same deal here, some people want to be able
-    ; to hold the MButton, so we're using separate
-    ; hotkeys
+; Same deal here, some people want to be able
+; to hold the MButton, so we're using separate
+; hotkeys
 
-    MButton::
-    if (keyInd > 0) {
-        Send % "{" keyArray[keyInd] " up}"
-    }
-    Send {MButton down}
-    Return
+MButton::
+if (keyInd > 0) {
+    Send % "{" keyArray[keyInd] " up}"
+}
+Send {MButton down}
+Return
 
-    MButton Up::Send {MButton up}
+MButton Up::Send {MButton up}
 }
 
 ; Emergency exit for the script, if something goes wrong
