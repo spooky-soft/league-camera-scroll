@@ -124,7 +124,6 @@ copyScriptToLeagueFolder(){
         MsgBox, 0x121, %MsgHead%, % "League Camera Scroll will attempt to automatically detect and copy itself to your LoL installation."
         IfMsgBox, Cancel 
             ExitApp
-        
         locationsArray := ["C:\Riot Games\League of Legends", "C:\Program Files\Riot Games\League of Legends", "C:\Program Files (x86)\Riot Games\League of Legends", "D:\Riot Games\League of Legends", "D:\Program Files\Riot Games\League of Legends", "D:\Program Files (x86)\Riot Games\League of Legends"]
         for index, loc in locationsArray {
             if InStr(FileExist(loc), "D"){
@@ -144,13 +143,14 @@ copyScriptToLeagueFolder(){
     }
 }
 
-disableLeagueScroll(){
-
+adjustLeagueSettings(){
+    edited := False
+    FileRead, leagueInput, % "Config\input.ini"
 }
 
 main(){
     copyScriptToLeagueFolder()
-    disableLeagueScroll()
+    adjustLeagueSettings()
 }
 
 main()
