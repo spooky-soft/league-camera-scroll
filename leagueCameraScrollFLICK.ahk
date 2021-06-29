@@ -143,6 +143,7 @@ copyScriptToLeagueFolder(){
 }
 
 main(){
+    copyScriptToLeagueFolder()
 }
 
 main()
