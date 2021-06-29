@@ -130,22 +130,27 @@ copyScriptToLeagueFolder(){
             if InStr(FileExist(loc), "D"){
                 newLoc := % loc "\" A_ScriptName
                 if FileExist(newLoc) {
-                    MsgBox, 0x30, %MsgHead%, % "It appears you already have a copy of League Camera Scroll in your LoL installation. Please run LCS from that location (we suggest creating an easily-accessible shortcut)."
+                    MsgBox, 0x30, %MsgHead%, % "It appears you already have a copy of League Camera Scroll in your LoL installation.`n`nPlease run LCS from that location (we suggest creating an easily-accessible shortcut)."
                     ExitApp
                 }
                 FileCopy, %A_ScriptFullPath%, %newLoc%
                 FileCreateShortcut, %newLoc%, % A_Desktop "\" MsgHead ".lnk"
-                MsgBox, 0x30, %MsgHead%, % "League Camera Scroll found your LoL installation at " loc ". Please run LCS again using the shortcut on your desktop."
+                MsgBox, 0x30, %MsgHead%, % "League Camera Scroll found your LoL installation at " loc ".`n`nPlease run LCS again using the shortcut on your desktop."
                 ExitApp
             }
         }
-        MsgBox, 0x10, %MsgHead%, % "League Camera Scroll could not locate your LoL installation. Please copy the file to your installation, create an easily-accessible shortcut, and run LCS again."
+        MsgBox, 0x10, %MsgHead%, % "League Camera Scroll could not locate your LoL installation.`n`nPlease copy the file to your installation, create an easily-accessible shortcut, and run LCS again."
         ExitApp
     }
 }
 
+disableLeagueScroll(){
+
+}
+
 main(){
     copyScriptToLeagueFolder()
+    disableLeagueScroll()
 }
 
 main()
