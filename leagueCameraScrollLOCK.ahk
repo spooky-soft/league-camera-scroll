@@ -119,6 +119,9 @@ SetKeyDelay, 35, 0
 #UseHook, On; Also required for working LoL AHK scripts
 
 copyScriptToLeagueFolder(){
+    ; If we're not running the script from the LoL
+    ; install folder, copies itself to there, and
+    ; creates a desktop shortcut
     if not InStr(A_ScriptFullPath, "League of Legends\" A_ScriptName) {
         MsgHead := "League Camera Scroll"
         MsgBox, 0x121, %MsgHead%, % "League Camera Scroll will attempt to automatically detect and copy itself to your LoL installation."
@@ -145,7 +148,16 @@ copyScriptToLeagueFolder(){
 
 adjustLeagueSettings(){
     edited := False
+    hasRoller := False
+    cameraControls := ["evtSelectAlly4=[F5]", "evtSelectAlly3=[F4]", "evtSelectAlly2=[F3]", "evtSelectAlly1=[F2]", "evtCameraSnap=[Space]"]
+    rollerButton := "RollerButtonSpeed=0"
+    rollerButtonSetting := "`n`n[MouseSettings]`nRollerButtonSpeed=0"
     FileRead, leagueInput, % "Config\input.ini"
+    for index, setting in cameraControls {
+        if not InStr(leagueInput, setting){
+
+        }
+    }
 }
 
 main(){

@@ -117,6 +117,9 @@ SetKeyDelay, 35, 0
 #UseHook, On; Also required for working LoL AHK scripts
 
 copyScriptToLeagueFolder(){
+    ; If we're not running the script from the LoL
+    ; install folder, copies itself to there, and
+    ; creates a desktop shortcut
     if not InStr(A_ScriptFullPath, "League of Legends\" A_ScriptName) {
         MsgHead := "League Camera Scroll"
         MsgBox, 0x121, %MsgHead%, % "League Camera Scroll will attempt to automatically detect and copy itself to your LoL installation."
