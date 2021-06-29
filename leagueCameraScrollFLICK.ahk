@@ -117,7 +117,29 @@ SetKeyDelay, 35, 0
 #UseHook, On; Also required for working LoL AHK scripts
 
 copyScriptToLeagueFolder(){
-    ; TODO
+    if not InStr(A_ScriptFullPath, "League of Legends\" A_ScriptName) {
+        MsgHead := "League Camera Scroll"
+        MsgBox, 0x121, %MsgHead%, % "League Camera Scroll will attempt to automatically detect and copy itself to your LoL installation."
+        IfMsgBox, Cancel 
+            ExitApp
+        
+        locationsArray := ["C:\Riot Games\League of Legends", "C:\Program Files\Riot Games\League of Legends", "C:\Program Files (x86)\Riot Games\League of Legends", "D:\Riot Games\League of Legends", "D:\Program Files\Riot Games\League of Legends", "D:\Program Files (x86)\Riot Games\League of Legends"]
+        for index, loc in locationsArray {
+            if InStr(FileExist(loc), "D"){
+                newLoc := % loc "\" A_ScriptName
+                if FileExist(newLoc) {
+                    MsgBox, 0x30, %MsgHead%, % "It appears you already have a copy of League Camera Scroll in your LoL installation. Please run LCS from that location (we suggest creating an easily-accessible shortcut)."
+                    ExitApp
+                }
+                FileCopy, %A_ScriptFullPath%, %newLoc%
+                FileCreateShortcut, %newLoc%, % A_Desktop "\" MsgHead ".lnk"
+                MsgBox, 0x30, %MsgHead%, % "League Camera Scroll found your LoL installation at " loc ". Please run LCS again using the shortcut on your desktop."
+                ExitApp
+            }
+        }
+        MsgBox, 0x10, %MsgHead%, % "League Camera Scroll could not locate your LoL installation. Please copy the file to your installation, create an easily-accessible shortcut, and run LCS again."
+        ExitApp
+    }
 }
 
 main(){
