@@ -8,6 +8,14 @@ in on your teammates, and you're in exactly the right place.
 
 HOW TO USE
 
+There are 2 versions of the script:
+
+For this version (LOCK): 
+Scrolling holds down the associated Fkey, keeping the
+camera semi-locked on the target ally. Tapping or pressing
+the Middle Mouse Button releases the camera, but doesn't
+snap the camera back to your champion.
+
 Here's how you use the script in-game:
 
 At the start of the game, hold TAB and drag your little profile
@@ -46,38 +54,28 @@ SetKeyDelay, 35, 0
 
 #UseHook, On; Also required for working LoL AHK scripts
 
-copyScriptToLeagueFolder(){
+findLeague(){
     ; If we're not running the script from the LoL
     ; install folder, copies itself to there, and
     ; creates a desktop shortcut
     if not InStr(A_ScriptFullPath, "League of Legends\" A_ScriptName) {
-        MsgHead := "League Camera Scroll"
-        MsgBox, 0x121, %MsgHead%, % "League Camera Scroll will attempt to automatically detect and copy itself to your LoL installation."
-        IfMsgBox, Cancel 
-            ExitApp
         locationsArray := ["C:\Riot Games\League of Legends", "C:\Program Files\Riot Games\League of Legends", "C:\Program Files (x86)\Riot Games\League of Legends", "D:\Riot Games\League of Legends", "D:\Program Files\Riot Games\League of Legends", "D:\Program Files (x86)\Riot Games\League of Legends"]
         for index, loc in locationsArray {
             if InStr(FileExist(loc), "D"){
-                newLoc := % loc "\" A_ScriptName
-                if FileExist(newLoc) {
-                    MsgBox, 0x30, %MsgHead%, % "It appears you already have a copy of League Camera Scroll in your LoL installation.`n`nPlease run LCS from that location (we suggest creating an easily-accessible shortcut)."
-                    ExitApp
-                }
-                FileCopy, %A_ScriptFullPath%, %newLoc%
-                FileCreateShortcut, %newLoc%, % A_Desktop "\" MsgHead ".lnk"
-                MsgBox, 0x30, %MsgHead%, % "League Camera Scroll found your LoL installation at " loc ".`n`nPlease run LCS again using the shortcut on your desktop."
-                ExitApp
+                Return loc
             }
         }
-        MsgBox, 0x10, %MsgHead%, % "League Camera Scroll could not locate your LoL installation.`n`nPlease copy the file to your installation, create an easily-accessible shortcut, and run LCS again."
+        MsgBox, 0x10, League Camera Scroll, % "League Camera Scroll could not locate your LoL installation.`n`nPlease copy the file to your installation, create an easily-accessible shortcut, and run LCS again."
         ExitApp
     }
+    Return A_ScriptDir
 }
 
 adjustLeagueSettings(){
     ; double-check to make sure the user's settings
     ; are set up compatibly, and that League's
     ; scrolling is disabled
+    SetWorkingDir %findLeague()%
     edited := False
     cameraControls := ["evtSelectAlly4=[F5]", "evtSelectAlly3=[F4]", "evtSelectAlly2=[F3]", "evtSelectAlly1=[F2]", "evtCameraSnap=[Space]"]
     ; I know it seems redundant to have these two lists
@@ -105,12 +103,7 @@ adjustLeagueSettings(){
     }
 }
 
-main(){
-    copyScriptToLeagueFolder()
-    adjustLeagueSettings()
-}
-
-main()
+adjustLeagueSettings()
 
 ; The array of f-keys between which to cycle
 ; starts at F3 to allow quick, intuitive
