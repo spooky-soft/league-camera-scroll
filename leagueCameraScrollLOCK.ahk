@@ -147,16 +147,33 @@ copyScriptToLeagueFolder(){
 }
 
 adjustLeagueSettings(){
+    ; double-check to make sure the user's settings
+    ; are set up compatibly, and that League's
+    ; scrolling is disabled
     edited := False
-    hasRoller := False
     cameraControls := ["evtSelectAlly4=[F5]", "evtSelectAlly3=[F4]", "evtSelectAlly2=[F3]", "evtSelectAlly1=[F2]", "evtCameraSnap=[Space]"]
-    rollerButton := "RollerButtonSpeed=0"
-    rollerButtonSetting := "`n`n[MouseSettings]`nRollerButtonSpeed=0"
+    ; I know it seems redundant to have these two lists
+    ; but it was seriously the only way I could get the
+    ; Regex to cooperate
+    cameraRegex := ["evtSelectAlly4=.+", "evtSelectAlly3=.+", "evtSelectAlly2=.+", "evtSelectAlly1=.+", "evtCameraSnap=.+"]
     FileRead, leagueInput, % "Config\input.ini"
     for index, setting in cameraControls {
         if not InStr(leagueInput, setting){
-
+            edited := True
+            leagueInput := RegExReplace(leagueInput, cameraRegex[index], setting)
         }
+    }
+    ; now check to see if scrolling is disabled
+    rollerButton := "RollerButtonSpeed=0"
+    rollerButtonSetting := "`n`n[MouseSettings]`nRollerButtonSpeed=0"
+    if not InStr(leagueInput, rollerButton){
+        edited := True
+        leagueInput .= rollerButtonSetting
+    }
+    if edited {
+        inputFile := FileOpen("Config\input.ini", "w")
+        inputFile.Write(leagueInput)
+        inputFile.Close()
     }
 }
 
