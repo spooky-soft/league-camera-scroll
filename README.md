@@ -32,3 +32,5 @@ At the start of the game, hold `TAB` and drag your little profile to the middle 
 ⭐ Use `Ctrl + Alt + Middle Mouse Button` to exit the script (in an emergency)
 
 And that's everything. Supreme map awareness is at your fingertips, summoner! Good luck, and have fun.
+
+Head over to the [releases page](https://github.com/spooky-noodle/league-camera-scroll/releases "Releases") to download the script for yourself.
