@@ -73,7 +73,7 @@ adjustLeagueSettings(){
     ; double-check to make sure the user's settings
     ; are set up compatibly, and that League's
     ; scrolling is disabled
-    SetWorkingDir %findLeague()%
+    SetWorkingDir % findLeague()
     edited := False
     cameraControls := ["evtSelectAlly4=[F5]", "evtSelectAlly3=[F4]", "evtSelectAlly2=[F3]", "evtSelectAlly1=[F2]", "evtCameraSnap=[Space]"]
     ; I know it seems redundant to have these two lists
