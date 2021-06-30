@@ -103,6 +103,22 @@ adjustLeagueSettings(){
 
 adjustLeagueSettings()
 
+warnString = 
+(
+People have been using AHK scripts in League for a decade, and the only ones who have received anything like a ban or warning are people cheesing inhuman combos. 
+
+We're basically just remapping some of the keyboard shortcuts to a different key.
+
+    HOWEVER:
+
+I can't guarantee the safety of your League account if you're using AHK scripts (such as this one) during your games. 
+
+It seems REALLY unlikely that they'd ban someone for this, but use at your own discretion.
+)
+MsgBox, 0x111, WARNING, %warnString%
+IfMsgBox, Cancel
+    ExitApp
+
 ; The array of f-keys between which to cycle
 ; starts at F3 to allow quick, intuitive
 ; access to teammates
